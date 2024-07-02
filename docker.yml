@@ -4,7 +4,7 @@
   gather_facts: no
   tasks:
     - name: Instalando-galaxy
-      command: ansible-galaxy collection install community.docker
+      shell: semaphore version
        
     - name: Ensure docker-py is installed
       pip:
