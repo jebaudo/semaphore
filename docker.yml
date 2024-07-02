@@ -1,0 +1,26 @@
+- name: Docker Containers Information
+  hosts: localhost
+  gather_facts: no
+  tasks:
+    - name: Ensure docker-py is installed
+      pip:
+        name: docker
+        state: present
+
+    - name: List Docker containers
+      docker_container_info:
+        name: all
+      register: result
+
+    - name: Print Docker containers information
+      debug:
+        var: result.containers
+
+    - name: List Docker images
+      docker_image_facts:
+        name: all
+      register: images
+
+    - name: Print Docker images information
+      debug:
+        var: images.images
