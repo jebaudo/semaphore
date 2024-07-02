@@ -3,6 +3,9 @@
   hosts: localhost
   gather_facts: no
   tasks:
+    - name: Instalando-galaxy
+      command: ansible-galaxy collection install community.docker
+       
     - name: Ensure docker-py is installed
       pip:
         name: docker
