@@ -1,0 +1,19 @@
+---
+- name: Obtener versiones de Ansible y Ansible Core
+  hosts: localhost
+  tasks:
+    - name: Obtener version de Ansible
+      command: ansible --version
+      register: ansible_version_output
+
+    - name: Mostrar version de Ansible
+      debug:
+        msg: "{{ ansible_version_output.stdout_lines[0] }}"
+
+    - name: Obtener version de Ansible Core
+      command: ansible-playbook --version
+      register: ansible_core_version_output
+
+    - name: Mostrar version de Ansible Core
+      debug:
+        msg: "{{ ansible_core_version_output.stdout_lines[0] }}"
