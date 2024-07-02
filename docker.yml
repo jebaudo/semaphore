@@ -1,3 +1,4 @@
+---
 - name: Docker Containers Information
   hosts: localhost
   gather_facts: no
@@ -8,7 +9,7 @@
         state: present
 
     - name: List Docker containers
-      docker_container_info:
+      community.docker.docker_container_info:
         name: all
       register: result
 
@@ -17,9 +18,14 @@
         var: result.containers
 
     - name: List Docker images
-      docker_image_facts:
+      community.docker.docker_image_info:
         name: all
       register: images
+
+    - name: Print Docker images information
+      debug:
+        var: images.images
+
 
     - name: Print Docker images information
       debug:
